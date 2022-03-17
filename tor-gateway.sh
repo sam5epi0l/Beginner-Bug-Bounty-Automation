@@ -23,10 +23,10 @@ sudo chmod +x nipe.pl nipe
 echo .........................................................................................................
 
 # create symbolic link
-sudo ln -sf /opt/nipe/nipe /usr/bin/nipe.pl
+sudo ln -sf /opt/nipe/nipe /usr/bin/nipe
 echo .........................................................................................................
 
 # start / stop / restart
-nipe.pl
+nipe
 echo .........................................................................................................
 echo "just run nipe.pl start from terminal to start TOR"
