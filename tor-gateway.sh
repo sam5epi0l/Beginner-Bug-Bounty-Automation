@@ -16,7 +16,7 @@ perl nipe.pl install
 echo .........................................................................................................
 
 # add launcher
-echo sudo perl nipe.pl \$1 | sudo tee nipe
+echo sudo perl /opt/nipe/nipe.pl \$1 | sudo tee nipe
 echo .........................................................................................................
 
 sudo chmod +x nipe.pl nipe
