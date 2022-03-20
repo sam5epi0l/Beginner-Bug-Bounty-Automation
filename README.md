@@ -47,8 +47,17 @@ Install essential tools required during Bug Hunting for Reconnaissance
 How to use:
 ```
 chmod +x bug-bounty-essentials.sh
-Install essential tools
+# Install essential tools
 ./bug-bounty-essentials.sh
 ```
 
+- ## 3. init.sh
+Start recon script on hosts provided in wildcards.txt file
+#### Note - Based on tomnomnom's approach
+```
+# Provide hosts to recon in wildcards.txt
+chmod +x init.sh
+# Start Recon
+./init.sh
+```
 #### Baking new scripts
