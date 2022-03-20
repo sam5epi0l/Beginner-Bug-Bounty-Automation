@@ -33,6 +33,7 @@ nipe restart
 
 - ## 2. toptomnomnom.sh
 Install top useful tools from [Tom Hudson's](https://github.com/tomnomnom/) github repo.
+[Video Tutorial](https://youtube.com/shorts/MzVGmoX1dQQ)
 How to use:
 ```
 chmod +x toptomnomnom.sh
@@ -49,3 +50,5 @@ chmod +x bug-bounty-essentials.sh
 Install essential tools
 ./bug-bounty-essentials.sh
 ```
+
+#### Baking new scripts
