@@ -6,6 +6,12 @@ These scripts are designed to be painkiller for initial bug bounty hunting stage
 `git clone https://github.com/sam5epi0l/Beginner-Bug-Bounty-Automation ; cd Beginner-Bug-Bounty-Automation || exit`
 #### All binaries, repos, and wordlists will be stored at /opt/ Directory
 
+```
+# install ohmyzsh if you want!
+sudo apt install zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
 - ## 1. tor-gateway.sh (It's like anonsurf on any Linux distro)
 This script uses nipe to make TOR, the default gateway of your computer.
 ### [Video Tutorial](https://youtu.be/kqNwJWdI1xM)
@@ -33,7 +39,6 @@ nipe restart
 
 - ## 2. toptomnomnom.sh
 Install top useful tools from [Tom Hudson's](https://github.com/tomnomnom/) github repo.
-[Video Tutorial](https://youtube.com/shorts/MzVGmoX1dQQ)
 How to use:
 ```
 chmod +x toptomnomnom.sh
