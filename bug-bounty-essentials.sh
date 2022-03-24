@@ -7,6 +7,11 @@ echo "[-] Installing snapd"
 sudo apt install snapd
 sudo systemctl start snapd.service
 
+# install gf-patterns with auto completion
+sudo rm /usr/bin/gf; sudo mv /opt/gf /opt/gff; sudo mkdir /opt/gf/; sudo mv /opt/gff /opt/gf/gf;
+cd /opt/gf/ || exit ; sudo wget https://raw.githubusercontent.com/tomnomnom/gf/master/gf-completion.bash ; sudo chmod 777 gf-completion.bash ;
+sudo chmod +x /opt/gf/gf ; sudo ln -sf /opt/gf/gf /usr/bin/gf ;
+
 echo "[i] All Requirements installed."
 # amass => amass enum -passive -d owasp.org -src (amass [subcommands] [options] -d host)
 #go install -v github.com/owasp/amass@latest ; sudo mv ~/go/bin amass /opt/. ; sudo chmod +x /opt/amass ; sudo ln -sf /opt/amass /usr/bin/amass
