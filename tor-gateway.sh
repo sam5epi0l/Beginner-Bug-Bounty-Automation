@@ -23,7 +23,8 @@ sudo chmod +x nipe.pl nipe
 echo .........................................................................................................
 
 # create symbolic link
-sudo ln -sf /opt/nipe/nipe /usr/bin/nipe
+echo "alias nipe=\"/opt/nipe/nipe\"" >> ~/.bashrc
+echo "alias nipe=\"/opt/nipe/nipe\"" >> ~/.zshrc
 echo .........................................................................................................
 
 # start / stop / restart
