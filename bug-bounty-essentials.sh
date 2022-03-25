@@ -9,8 +9,10 @@ sudo systemctl start snapd.service
 
 # install gf-patterns with auto completion
 sudo rm /usr/bin/gf; sudo mv /opt/gf /opt/gff; sudo mkdir /opt/gf/; sudo mv /opt/gff /opt/gf/gf;
-cd /opt/gf/ || exit ; sudo wget https://raw.githubusercontent.com/tomnomnom/gf/master/gf-completion.bash ; sudo chmod 777 gf-completion.bash ;
+cd /opt/gf/ || exit ; sudo wget https://raw.githubusercontent.com/tomnomnom/gf/master/gf-completion.bash ; sudo wget https://raw.githubusercontent.com/tomnomnom/gf/master/gf-completion.zsh ;
 sudo chmod +x /opt/gf/gf ; sudo ln -sf /opt/gf/gf /usr/bin/gf ;
+echo 'source /opt/gf/gf-completion.bash' >> ~/.bashrc
+echo 'source /opt/gf/gf-completion.zsh' >> ~/.zshrc
 
 echo "[i] All Requirements installed."
 # amass => amass enum -passive -d owasp.org -src (amass [subcommands] [options] -d host)
