@@ -10,7 +10,7 @@ sudo systemctl start snapd.service
 # install gf-patterns with auto completion
 sudo rm /usr/bin/gf; sudo mv /opt/gf /opt/gff; sudo mkdir /opt/gf/; sudo mv /opt/gff /opt/gf/gf;
 cd /opt/gf/ || exit ; sudo wget https://raw.githubusercontent.com/tomnomnom/gf/master/gf-completion.bash ; sudo wget https://raw.githubusercontent.com/tomnomnom/gf/master/gf-completion.zsh ;
-sudo chmod +x /opt/gf/gf ; sudo ln -sf /opt/gf/gf /usr/bin/gf ;
+sudo chmod +x /opt/gf/gf ; echo "alias gf=\"/opt/gf/gf\"" >> ~/.bashrc ; echo "alias gf=\"/opt/gf/gf\"" >> ~/.zshrc
 echo 'source /opt/gf/gf-completion.bash' >> ~/.bashrc
 echo 'source /opt/gf/gf-completion.zsh' >> ~/.zshrc
 
@@ -23,7 +23,7 @@ sudo snap install amass
 
 # Insall finddomain which get newly registered domains on target
 echo "[i] Installing findomain"
-sudo wget https://github.com/findomain/findomain/releases/latest/download/findomain-linux ; sudo mv findomain-linux /opt/findomain ; sudo chmod +x /opt/findomain ; sudo ln -sf /opt/findomain /usr/bin/findomain
+sudo wget https://github.com/findomain/findomain/releases/latest/download/findomain-linux ; sudo mv findomain-linux /opt/findomain ; sudo chmod +x /opt/findomain ; echo "alias findomain=\"/opt/findomain\"" >> ~/.bashrc ; echo "alias findomain=\"/opt/findomain\"" >> ~/.zshrc
 # sudo rm /opt/findomain /usr/bin/findomain
 
 echo "[i] Installing go tools"
@@ -31,5 +31,5 @@ echo "[i] Installing go tools"
 
 # Install httpsx which is updated and better than httprobe
 echo "[i] Installing httpx"
-go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest ; sudo mv ~/go/bin/httpx /opt/. ; sudo chmod +x /opt/httpx ; sudo ln -sf /opt/httpx /usr/bin/httpx
+go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest ; sudo mv ~/go/bin/httpx /opt/. ; sudo chmod +x /opt/httpx ; echo "alias httpx=\"/opt/httpx\"" >> ~/.bashrc ; echo "alias httpx=\"/opt/httpx\"" >> ~/.zshrc
 echo "[i] installed httpx"
