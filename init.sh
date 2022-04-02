@@ -23,6 +23,15 @@ echo "[i] add these to domain.txt file and remove duplicates"
 anew domains.txt < amass_passive.txt
 echo
 
+echo "[i] search domains on archive.org"
+# or use gau
+waybackurls < domains.txt | tee waybackurls.txt
+echo
+
+echo "[i] looking for alive waybackurls with httpx"
+httpx -o alive-waybackurls.txt < waybackurls.txt
+echo
+
 echo "[i] Filtering Live hosts to alive_domain.txt (default rate concurrency is 10)"
 httprobe -c 10 < domains.txt | anew alive-host.txt
 echo
