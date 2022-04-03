@@ -46,4 +46,10 @@ meg paths.txt alive-hosts.txt roots_meg
 echo
 
 # echo "[i] Here comes the gf patterns"
-# gf # add some first ~/.gf/*.json has problems brrrrrrrrrrrrrrrrrrrrr
+mkdir gf-alive-waybackurls;
+for pattern in ssrf redirect;
+do
+    echo
+    cat alive-waybackurls.txt | gf $pattern > gf-alive-waybackurls/$pattern.txt
+    echo "[i] $pattern saved in gf-alive-waybackurls/$pattern.txt"
+done;
