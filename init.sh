@@ -33,6 +33,9 @@ httpx -o alive-waybackurls.txt < waybackurls.txt
 echo
 
 echo "[i] Filtering Live hosts to alive_domain.txt (default rate concurrency is 10)"
+
+
+
 httprobe -c 10 < domains.txt | anew alive-host.txt
 echo
 
@@ -45,11 +48,10 @@ echo "[i] Use meg to send same path request to all"
 meg paths.txt alive-hosts.txt roots_meg
 echo
 
-# echo "[i] Here comes the gf patterns"
-mkdir gf-alive-waybackurls;
-for pattern in ssrf redirect;
-do
-    echo
-    cat alive-waybackurls.txt | gf $pattern > gf-alive-waybackurls/$pattern.txt
-    echo "[i] $pattern saved in gf-alive-waybackurls/$pattern.txt"
-done;
+echo "[i] fetching gf output for alive-waybackurls.txt"
+mkdir gf-patterns
+
+for a in ~/.gf/*.json; do
+echo "$a" | cut -d "/" -f5 | cut -d "." -f1 | read -r bug
+cat alive-waybackurls.txt | gf $bug > gf-patterns/alive-waybackurls-$bug.txt && echo "[i] gf output for $bug saved in gf-patterns/alive-waybackurls-$bug.txt"
+done
