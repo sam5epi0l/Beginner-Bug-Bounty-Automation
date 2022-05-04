@@ -20,8 +20,10 @@ sudo apt install golang
 for tool in anew httprobe fff meg gf waybackurls gron comb qsreplace assetfinder;
 do
     echo "[i] installing $tool"
-    go install -v github.com/tomnomnom/$tool@latest ; sudo mv ~/go/bin/$tool /opt/. ; sudo chmod +x /opt/$tool ; echo "alias $tool=\"/opt/$tool\"" >> ~/.bashrc ; echo "alias $tool=\"/opt/$tool\"" >> ~/.zshrc
+    go install -v github.com/tomnomnom/$tool@latest ; sudo mv ~/go/bin/$tool /opt/. ; sudo chmod +x /opt/$tool ; 
+    echo "alias $tool=\"/opt/$tool\"" >> ~/.bashrc ; echo "alias $tool=\"/opt/$tool\"" >> ~/.zshrc
+    # or export PATH=$PATH:/opt
     echo "[i] installed $tool"
     # to remove these tools from your system
-    #sudo rm /opt/$tool /usr/bin/$tool
+    #sudo rm /opt/$tool
 done;
