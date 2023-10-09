@@ -1,0 +1,6 @@
+A command line companion program which uses openai API to suggest command to bug bounty hunters.
+Reads last 10 commands executed in a specified terminal window to get a context.
+Reads the list of bug bounty tools available on the computer via JSON file.
+Sends the commands and bug bounty tools to openAI API with this prompt: "Act as a bug bounty hunter and help me find bugs on my website. Suggest next 10 commands that I should run based on the last 10 commands and the list of tools provided."
+Outputs the 10 commands which openai gave as response.
+Let user select and copy a command from the list of 10 with keyboard.

@@ -1,0 +1,128 @@
+Based on the requirements, here are the core classes, functions, and methods that will be necessary:
+
+1. `CommandReader` class:
+   - `read_last_commands()` method: Reads the last 10 commands from the `.bash_history` file.
+
+2. `BugBountyToolReader` class:
+   - `read_bug_bounty_tools()` method: Reads the bug bounty tools from the `commands.json` file.
+
+3. `OpenAIAPIClient` class:
+   - `send_commands_and_tools(commands, tools)` method: Sends the commands and bug bounty tools to the OpenAI API and retrieves the suggested commands.
+
+4. `Clipboard` class:
+   - `copy_to_clipboard(text)` method: Copies the selected command to the clipboard.
+
+Now, let's proceed with creating the necessary files.
+
+**command_reader.py**
+```python
+import os
+
+class CommandReader:
+    @staticmethod
+    def read_last_commands():
+        home_dir = os.path.expanduser("~")
+        history_file = os.path.join(home_dir, ".bash_history")
+        with open(history_file, "r") as file:
+            lines = file.readlines()
+            last_commands = lines[-10:]
+        return last_commands
+```
+
+**bug_bounty_tool_reader.py**
+```python
+import json
+
+class BugBountyToolReader:
+    @staticmethod
+    def read_bug_bounty_tools():
+        with open("commands.json", "r") as file:
+            tools = json.load(file)
+        return tools
+```
+
+**openai_api_client.py**
+```python
+import os
+import openai
+
+class OpenAIAPIClient:
+    def __init__(self):
+        self.api_key = os.environ.get("OPENAI_API_KEY")
+        openai.api_key = self.api_key
+
+    def send_commands_and_tools(self, commands, tools):
+        prompt = "Act as a bug bounty hunter and help me find bugs on my website. Suggest next 10 commands that I should run based on the last 10 commands and the list of tools provided."
+        context = "\n".join(commands)
+        data = {
+            "prompt": prompt,
+            "context": context,
+            "tools": tools
+        }
+        response = openai.Completion.create(
+            engine="davinci-codex",
+            prompt=data["prompt"],
+            max_tokens=100,
+            context=data["context"],
+            tools=data["tools"]
+        )
+        suggested_commands = response.choices[0].text.strip().split("\n")
+        return suggested_commands
+```
+
+**clipboard.py**
+```python
+import pyperclip
+
+class Clipboard:
+    @staticmethod
+    def copy_to_clipboard(text):
+        pyperclip.copy(text)
+```
+
+**main.py**
+```python
+from command_reader import CommandReader
+from bug_bounty_tool_reader import BugBountyToolReader
+from openai_api_client import OpenAIAPIClient
+from clipboard import Clipboard
+
+def main():
+    # Read last commands
+    command_reader = CommandReader()
+    last_commands = command_reader.read_last_commands()
+
+    # Read bug bounty tools
+    tool_reader = BugBountyToolReader()
+    bug_bounty_tools = tool_reader.read_bug_bounty_tools()
+
+    # Send commands and tools to OpenAI API
+    openai_client = OpenAIAPIClient()
+    suggested_commands = openai_client.send_commands_and_tools(last_commands, bug_bounty_tools)
+
+    # Display suggested commands
+    print("Suggested Commands:")
+    for i, command in enumerate(suggested_commands, start=1):
+        print(f"{i}. {command}")
+
+    # Select and copy a command to clipboard
+    selected_command = input("Select a command number to copy to clipboard: ")
+    if selected_command.isdigit() and int(selected_command) in range(1, len(suggested_commands) + 1):
+        Clipboard.copy_to_clipboard(suggested_commands[int(selected_command) - 1])
+        print("Command copied to clipboard!")
+    else:
+        print("Invalid command number.")
+
+if __name__ == "__main__":
+    main()
+```
+
+**requirements.txt**
+```
+openai
+pyperclip
+```
+
+Make sure to replace the `OPENAI_API_KEY` environment variable with your actual OpenAI API key.
+
+This architecture includes all the necessary components to read the last 10 commands, read bug bounty tools from a JSON file, send the commands and tools to the OpenAI API, receive and display the suggested commands, and allow the user to select and copy a command to the clipboard.
